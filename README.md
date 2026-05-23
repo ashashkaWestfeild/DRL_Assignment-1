@@ -1,8 +1,19 @@
 # Deep Reinforcement Learning (DRL) — Core Foundations
 ## Multi-Armed Bandits (MAB) & Dynamic Programming (DP)
-### BITS Pilani WILP | DRL Assignment 1 | Group 84 | Student ID: 2025aa05710
+### BITS Pilani WILP | DRL Assignment 1 | Group 84 | Alphabetically First Student ID: 2025aa05368
 
 ---
+
+### 👥 Group Members
+
+| # | Student ID | Role |
+|---|---|---|
+| **1 (Alphabetically First)** | **`2025aa05368`** | ✅ DP Environment Seed |
+| 2 | `2025aa05574` | Group Member |
+| 3 | `2025aa05710` | Group Member |
+| 4 | `2025ab05154` | Group Member |
+| 5 | `2025ab05256` | Group Member |
+
 
 ## 📖 Project Overview
 This repository contains the complete implementation and theoretical analysis for **DRL Assignment 1 (BITS Pilani WILP)**. The project bridges the two fundamental paradigms of Reinforcement Learning:

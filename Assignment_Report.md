@@ -1,12 +1,23 @@
 # DRL Assignment 1 — Comprehensive Report
-### BITS Pilani WILP | Group 84 | Student ID: 2025aa05710
+### BITS Pilani WILP | Group 84 | Alphabetically First Student ID: 2025aa05368
 
 ---
+
+### 👥 Group Members
+
+| # | Student ID | Role |
+|---|---|---|
+| **1 (Alphabetically First)** | **`2025aa05368`** | ✅ DP Environment Seed |
+| 2 | `2025aa05574` | Group Member |
+| 3 | `2025aa05710` | Group Member |
+| 4 | `2025ab05154` | Group Member |
+| 5 | `2025ab05256` | Group Member |
+
 
 ## Table of Contents
 
 1. [Assignment Overview](#1-assignment-overview)
-   - [1.1 Parameter Customization Mapping](#11-parameter-customization-mapping-group-84--student-id-2025aa05710)
+   - [1.1 Parameter Customization Mapping](#11-parameter-customization-mapping-group-84--alphabetically-first-student-id-2025aa05368 (alphabetically first))
 2. [Part 1 — Multi-Armed Bandit (MAB)](#2-part-1--multi-armed-bandit-mab)
    - [2.1 Background: The Bandit Problem](#21-background-the-bandit-problem)
    - [2.2 Problem Setup & Parameter Derivation (Group 84)](#22-problem-setup--parameter-derivation-group-84)
@@ -17,7 +28,7 @@
    - [2.7 Comparative Analysis & Observations](#27-comparative-analysis--observations)
 3. [Part 2 — Dynamic Programming (DP)](#3-part-2--dynamic-programming-dp)
    - [3.1 Background: Markov Decision Processes](#31-background-markov-decision-processes)
-   - [3.2 Problem Setup & Grid Configuration](#32-problem-setup--grid-configuration-student-id-2025aa05710)
+   - [3.2 Problem Setup & Grid Configuration](#32-problem-setup--grid-configuration-alphabetically-first-student-id-2025aa05368 (alphabetically first))
    - [3.3 State Space Design & Markov Property](#33-state-space-design--markov-property)
    - [3.4 Bellman Optimality Equations](#34-bellman-optimality-equations)
    - [3.5 Value Iteration Algorithm](#35-value-iteration-algorithm)
@@ -44,9 +55,9 @@ The two parts represent a philosophical spectrum in RL:
 
 > This distinction is critical in practice: Model-based methods (DP) converge faster when the model is accurate, but break down when the environment is complex or unknown. Model-free methods (MAB, Q-Learning, PPO) are more general and are the foundation of modern Deep RL.
 
-### 1.1 Parameter Customization Mapping (Group 84 & Student ID: 2025aa05710)
+### 1.1 Parameter Customization Mapping (Group 84 & Alphabetically First Student ID: 2025aa05368)
 
-To guarantee uniqueness, the assignment specifications mandate deriving all environment parameters from the **Group Number (G = 84)** and **Alphabetically First Student ID (Student ID = 2025aa05710)**. Below is the complete mapping showing how these identifiers impact both parts:
+To guarantee uniqueness, the assignment specifications mandate deriving all environment parameters from the **Group Number (G = 84)** and **Alphabetically First Student ID (Student ID = 2025aa05368 (alphabetically first))**. Below is the complete mapping showing how these identifiers impact both parts:
 
 | Assignment Part | Parameter | Derivation / Formula | Input Used | Resolved Value |
 | :--- | :--- | :--- | :--- | :--- |
@@ -58,12 +69,12 @@ To guarantee uniqueness, the assignment specifications mandate deriving all envi
 | **Part 2: DP** | **Starting Battery Capacity** | $10$ units if Group ID ends in even digit; else $15$ | `Group ID = 84` (ends in `4` - even) | **`10`** units maximum capacity |
 | **Part 2: DP** | **Stochastic Wind Probability** | $20\%$ if Group ID ends in `0-4`; else $30\%$ | `Group ID = 84` (ends in `4`) | **`20%`** probability of random drift |
 | **Part 2: DP** | **Environment Elements** | 2 Targets, 1 Charger, 3 Dangers, 2 Blocked if ends in `0-4` | `Group ID = 84` (ends in `4`) | **`2 Targets, 1 Charger, 3 Dangers, 2 Blocked`** |
-| **Part 2: DP** | **Layout Placement Seed** | Student ID parsed as integer seed | `Student ID = 202505710` | **`202505710`** (deterministic layout seed) |
-| **Part 2: DP** | **Rescue Targets ($R$)** | Placement based on layout seed | Seed `202505710` | **`[(1, 2), (4, 0)]`** |
-| **Part 2: DP** | **Charging Station ($C$)** | Placement based on layout seed | Seed `202505710` | **`(2, 1)`** |
-| **Part 2: DP** | **Danger Zones ($D$)** | Placement based on layout seed | Seed `202505710` | **`[(2, 2), (2, 4), (3, 2)]`** |
-| **Part 2: DP** | **Blocked Cells ($X$)** | Placement based on layout seed | Seed `202505710` | **`[(0, 2), (3, 3)]`** |
-| **Part 2: DP** | **Wind Zones ($W$)** | Placement based on layout seed | Seed `202505710` | **`[(1, 4), (4, 1)]`** |
+| **Part 2: DP** | **Layout Placement Seed** | Student ID parsed as integer seed | `Student ID = 202505368` | **`202505368`** (deterministic layout seed) |
+| **Part 2: DP** | **Rescue Targets ($R$)** | Placement based on layout seed | Seed `202505368` | **`[(1, 2), (4, 0)]`** |
+| **Part 2: DP** | **Charging Station ($C$)** | Placement based on layout seed | Seed `202505368` | **`(2, 1)`** |
+| **Part 2: DP** | **Danger Zones ($D$)** | Placement based on layout seed | Seed `202505368` | **`[(2, 2), (2, 4), (3, 2)]`** |
+| **Part 2: DP** | **Blocked Cells ($X$)** | Placement based on layout seed | Seed `202505368` | **`[(0, 2), (3, 3)]`** |
+| **Part 2: DP** | **Wind Zones ($W$)** | Placement based on layout seed | Seed `202505368` | **`[(1, 4), (4, 1)]`** |
 | **Part 2: DP** | **MDP State Space Size** | $\text{rows} \times \text{cols} \times (\text{battery}+1) \times 2^{t_1} \times 2^{t_2}$ | $5 \times 5 \times 11 \times 2 \times 2$ | **`1,100`** reachable states |
 
 This deterministic personalization ensures that the generated notebooks run on a customized environment that cannot be copied from standard internet solutions.
@@ -310,7 +321,7 @@ Formally, an MDP is defined by the tuple (S, A, P, R, gamma):
 
 ---
 
-### 3.2 Problem Setup & Grid Configuration (Student ID: 2025aa05710)
+### 3.2 Problem Setup & Grid Configuration (Alphabetically First Student ID: 2025aa05368)
 
 **Last digit of register number:** 0 → Grid configuration for IDs ending in 0-4.
 
@@ -326,7 +337,7 @@ Formally, an MDP is defined by the tuple (S, A, P, R, gamma):
 | Blocked Cells | 2 | Per 0-4 configuration |
 | Wind Zones | 2 | Deterministically placed via student ID seed |
 
-#### Grid Layout (Derived via seed = 202505710 from student ID):
+#### Grid Layout (Derived via seed = 202505368 from student ID):
 
 ```
      Col->   0        1        2        3        4
