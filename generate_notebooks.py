@@ -48,8 +48,16 @@ def make_mab_notebook() -> nbformat.NotebookNode:
 | **Institute** | BITS Pilani – WILP |
 | **Assignment** | Lab Assignment 1 — Part 1 |
 | **Group Number** | 84 |
-| **Student ID** | 2025aa05710 |
 | **Topic** | Multi-Armed Bandit: Exploration vs Exploitation |
+
+### 👥 Group Members
+| Student ID | Note |
+|---|---|
+| **2025aa05368** | *(Alphabetically first — environment seed used for DP Part 2)* |
+| 2025aa05574 | |
+| 2025aa05710 | |
+| 2025ab05154 | |
+| 2025ab05256 | |
 
 ---
 > **📖 Reference:** Sutton & Barto (2018), *Reinforcement Learning: An Introduction*, Chapter 2.  
@@ -87,7 +95,8 @@ print(f"  Machine ID / Hostname     : {hostname}")
 print(f"  Operating System          : {os_info}")
 print(f"  Python Version            : {platform.python_version()}")
 print(f"  Group Number              : 84")
-print(f"  Student ID                : 2025aa05710")
+print(f"  Group Members (IDs)       : 2025aa05368, 2025aa05574, 2025aa05710, 2025ab05154, 2025ab05256")
+print(f"  Env Seed (Alphabetical 1st): 2025aa05368")
 print("=" * 60)
 """))
 
@@ -130,7 +139,9 @@ np.random.seed(SEED)
 
 # ── Global Parameters ────────────────────────────────────────
 GROUP_NUMBER = 84          # G = 84
-STUDENT_ID   = "2025aa05710"
+# All group members (sorted alphabetically — alphabetically first ID used as env seed for DP)
+GROUP_MEMBERS = ["2025aa05368", "2025aa05574", "2025aa05710", "2025ab05154", "2025ab05256"]
+STUDENT_ID   = "2025aa05368"   # Alphabetically first student ID — used as DP environment seed
 N_PATIENTS   = 1000        # Total number of sequential patients (T = 1000)
 
 print(f"✅ Libraries loaded | Seed={SEED} | Group={GROUP_NUMBER} | Patients={N_PATIENTS}")
@@ -1010,9 +1021,17 @@ def make_dp_notebook() -> nbformat.NotebookNode:
 | **Institute** | BITS Pilani – WILP |
 | **Assignment** | Lab Assignment 1 — Part 2 |
 | **Group Number** | 84 |
-| **Student ID** | 2025aa05710 |
 | **Topic** | Dynamic Programming: MDP, Value Iteration, Optimal Policy |
 | **Grid** | 5×5 | Battery: 10 | Wind: 20% |
+
+### 👥 Group Members
+| Student ID | Note |
+|---|---|
+| **2025aa05368** | *(Alphabetically first — environment seed used for this DP configuration)* |
+| 2025aa05574 | |
+| 2025aa05710 | |
+| 2025ab05154 | |
+| 2025ab05256 | |
 
 ---
 > **📖 Reference:** Sutton & Barto (2018), *Reinforcement Learning: An Introduction*, Chapter 4.  
@@ -1038,7 +1057,8 @@ print(f"  Machine ID / Hostname     : {hostname}")
 print(f"  Operating System          : {platform.platform()}")
 print(f"  Python Version            : {platform.python_version()}")
 print(f"  Group Number              : 84")
-print(f"  Student ID                : 2025aa05710")
+print(f"  Group Members (IDs)       : 2025aa05368, 2025aa05574, 2025aa05710, 2025ab05154, 2025ab05256")
+print(f"  Env Seed (Alphabetical 1st): 2025aa05368")
 print("=" * 60)
 """))
 
@@ -1113,27 +1133,36 @@ $$V_{k+1}(s) = (\\mathcal{T}V_k)(s) = \\max_{a} \\sum_{s'} \\mathcal{P}(s'\\mid 
 """))
 
     # ── ENV CONFIG ─────────────────────────────────────────────
-    cells.append(nb_md("""## ⚙️ 3. Environment Configuration (Student ID: 2025aa05710)
+    cells.append(nb_md("""## ⚙️ 3. Environment Configuration (Group 84 | Alphabetically First Student ID: 2025aa05368)
 
 ### Parameter Derivation
 
-- **Last digit of Student ID:** `0` → in range {0–4}  
-- **Grid:** 5×5, **Battery:** 10 (even digit), **Wind Probability:** 20%
+> The assignment specifies that the **alphabetically first student ID** in the group determines the environment layout seed.  
+> All 5 group members sorted: **2025aa05368** < 2025aa05574 < 2025aa05710 < 2025ab05154 < 2025ab05256  
+> Therefore, **2025aa05368** is used as the environment placement seed.
 
-### Grid Layout (Derived via seed = 202505710)
+| Parameter | Derivation | Value |
+|---|---|---|
+| **Group ID last digit** | `84` ends in `4` → range 0–4 | Grid = **5×5** |
+| **Battery capacity** | Group ID ends in even digit (`4`) | Max battery = **10 units** |
+| **Wind probability** | Group ID ends in 0–4 | Wind = **20%** |
+| **Element count** | Group ID ends in 0–4 | 2 Targets, 1 Charger, 3 Dangers, 2 Blocked |
+| **Layout seed** | Numeric part of alphabetically first student ID | Seed = **202505368** |
+
+### Grid Layout (Derived via seed = 202505368 from Student ID: 2025aa05368)
 
 ```
      Col→   0        1        2        3        4
 Row↓ ┌────────┬────────┬────────┬────────┬────────┐
- 0   │  S     │   .    │   X    │   .    │   .    │
+ 0   │  S     │   X    │   .    │   .    │   .    │
      ├────────┼────────┼────────┼────────┼────────┤
- 1   │   .    │   .    │   R₁   │   .    │   W    │
+ 1   │   .    │   R₁   │   .    │   X    │   D    │
      ├────────┼────────┼────────┼────────┼────────┤
- 2   │   .    │   C    │   D    │   .    │   D    │
+ 2   │   .    │   C    │   .    │   .    │   .    │
      ├────────┼────────┼────────┼────────┼────────┤
- 3   │   .    │   .    │   D    │   X    │   .    │
+ 3   │   .    │   R₂   │   W    │   .    │   D    │
      ├────────┼────────┼────────┼────────┼────────┤
- 4   │   R₂   │   W    │   .    │   .    │   .    │
+ 4   │   .    │   .    │   .    │   D    │   W    │
      └────────┴────────┴────────┴────────┴────────┘
 ```
 
@@ -1169,42 +1198,43 @@ CELL_BLOCKED  = 'X'   # Impassable wall (stay in place, -1 battery)
 CELL_WIND     = 'W'   # Wind zone (20% random drift)
 
 # ── Grid Map: (row, col) → cell type ─────────────────────────
-# Derived deterministically using seed = 202505710 (numeric part of student ID)
+# Derived deterministically using seed = 202505368
+# (numeric part of alphabetically first student ID: 2025aa05368)
 GRID_MAP = {
     (0, 0): CELL_START,
-    (0, 1): CELL_SAFE,
-    (0, 2): CELL_BLOCKED,    # Blocked Cell 1
+    (0, 1): CELL_BLOCKED,    # Blocked Cell 1
+    (0, 2): CELL_SAFE,
     (0, 3): CELL_SAFE,
     (0, 4): CELL_SAFE,
     (1, 0): CELL_SAFE,
-    (1, 1): CELL_SAFE,
-    (1, 2): CELL_RESCUE,     # Rescue Target 1 (R1)
-    (1, 3): CELL_SAFE,
-    (1, 4): CELL_WIND,       # Wind Zone 2
+    (1, 1): CELL_RESCUE,     # Rescue Target 1 (R1)
+    (1, 2): CELL_SAFE,
+    (1, 3): CELL_BLOCKED,    # Blocked Cell 2
+    (1, 4): CELL_DANGER,     # Danger Zone 1
     (2, 0): CELL_SAFE,
     (2, 1): CELL_CHARGER,    # Charging Station
-    (2, 2): CELL_DANGER,     # Danger Zone 2
+    (2, 2): CELL_SAFE,
     (2, 3): CELL_SAFE,
-    (2, 4): CELL_DANGER,     # Danger Zone 1
+    (2, 4): CELL_SAFE,
     (3, 0): CELL_SAFE,
-    (3, 1): CELL_SAFE,
-    (3, 2): CELL_DANGER,     # Danger Zone 3
-    (3, 3): CELL_BLOCKED,    # Blocked Cell 2
-    (3, 4): CELL_SAFE,
-    (4, 0): CELL_RESCUE,     # Rescue Target 2 (R2)
-    (4, 1): CELL_WIND,       # Wind Zone 1
+    (3, 1): CELL_RESCUE,     # Rescue Target 2 (R2)
+    (3, 2): CELL_WIND,       # Wind Zone 1
+    (3, 3): CELL_SAFE,
+    (3, 4): CELL_DANGER,     # Danger Zone 2
+    (4, 0): CELL_SAFE,
+    (4, 1): CELL_SAFE,
     (4, 2): CELL_SAFE,
-    (4, 3): CELL_SAFE,
-    (4, 4): CELL_SAFE,
+    (4, 3): CELL_DANGER,     # Danger Zone 3
+    (4, 4): CELL_WIND,       # Wind Zone 2
 }
 
 # ── Special Cell Locations ────────────────────────────────────
-START_POS     = (0, 0)
-RESCUE_TARGETS = [(1, 2), (4, 0)]    # Positions of the 2 rescue targets
-CHARGER_POS   = (2, 1)
-DANGER_ZONES  = [(2, 2), (2, 4), (3, 2)]
-BLOCKED_CELLS = [(0, 2), (3, 3)]
-WIND_ZONES    = [(1, 4), (4, 1)]
+START_POS      = (0, 0)
+RESCUE_TARGETS = [(1, 1), (3, 1)]    # Seed 202505368: R1=(1,1), R2=(3,1)
+CHARGER_POS    = (2, 1)
+DANGER_ZONES   = [(1, 4), (3, 4), (4, 3)]
+BLOCKED_CELLS  = [(0, 1), (1, 3)]
+WIND_ZONES     = [(3, 2), (4, 4)]
 
 # ── Battery Settings ──────────────────────────────────────────
 MAX_BATTERY      = 10   # Maximum battery capacity (units)
@@ -2252,7 +2282,8 @@ print("📊 Curse of Dimensionality plot saved.")
 print("=" * 70)
 print("  PART 2 COMPLETE — DYNAMIC PROGRAMMING SUMMARY")
 print("=" * 70)
-print(f"  Student ID  : 2025aa05710  |  Group: 84")
+print(f"  Group       : 84  |  Env Seed Student ID: 2025aa05368 (Alphabetically First)")
+print(f"  All Members : 2025aa05368, 2025aa05574, 2025aa05710, 2025ab05154, 2025ab05256")
 print(f"  Grid        : {GRID_ROWS}×{GRID_COLS}  |  Battery: {MAX_BATTERY}  |  Wind: {WIND_PROB*100:.0f}%")
 print()
 print(f"  Value Iteration Results:")
