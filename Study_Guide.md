@@ -112,12 +112,12 @@ A dual-panel plot showing the number of Value Iteration sweeps (x-axis) vs. the 
 A 6-panel grid layout of your $5\times5$ map. Each cell contains an **arrow** indicating the optimal action ($\uparrow, \downarrow, \leftarrow, \rightarrow$, or $\bullet$ for Hover) determined by the policy $\pi^*(s)$ under different battery levels and target configurations.
 
 #### How to Read it:
-*   **High Battery (Battery = 10):** Look at the arrows—they point directly toward the rescue targets ($R_1$ at `(1,2)` and $R_2$ at `(4,0)`). The drone has plenty of energy, so it ignores the charging station ($C$ at `(2,1)`) and navigates greedily to save civilians.
+*   **High Battery (Battery = 10):** Look at the arrows—they point directly toward the rescue targets ($R_1$ at `(1,1)` and $R_2$ at `(3,1)`). The drone has plenty of energy, so it ignores the charging station ($C$ at `(2,1)`) and navigates greedily to save civilians.
 *   **Low Battery (Battery = 2):** Notice how all arrows bend and point directly toward the charging station `(2,1)`, even if the drone is standing adjacent to a target. Avoiding battery depletion (which carries a severe $-20$ penalty) becomes the absolute priority.
-*   **Target Status Change:** Compare the panel where both targets are active to the panel where Target 1 is already rescued. The arrows surrounding coordinate `(1,2)` no longer point toward it; instead, they route the drone directly toward Target 2 at `(4,0)`.
+*   **Target Status Change:** Compare the panel where both targets are active to the panel where Target 1 is already rescued. The arrows surrounding coordinate `(1,1)` no longer point toward it; instead, they route the drone directly toward Target 2 at `(3,1)`.
 
 #### What to Focus on:
-*   **The Markov Property:** Use this plot to explain why position alone is not a valid Markov state. A state must contain *all* information needed to decide the future. Since the optimal action at coordinate `(4,0)` changes based on battery and target status, the state space must be expanded to a 5-tuple: $s = (row, col, battery, t_1, t_2)$.
+*   **The Markov Property:** Use this plot to explain why position alone is not a valid Markov state. A state must contain *all* information needed to decide the future. Since the optimal action at coordinate `(3,1)` changes based on battery and target status, the state space must be expanded to a 5-tuple: $s = (row, col, battery, t_1, t_2)$.
 
 ---
 
@@ -128,7 +128,7 @@ A 6-panel heatmap representing the state-values $V^*(s)$ for every coordinate. B
 
 #### How to Read it:
 *   **Target Proximity:** Cells adjacent to the targets are bright red, representing high state-value.
-*   **Danger Zones:** The cells containing or surrounding the three danger zones ($D$ at `(2,2)`, `(2,4)`, `(3,2)`) are dark blue/purple, reflecting their heavy negative reward.
+*   **Danger Zones:** The cells containing or surrounding the three danger zones ($D$ at `(0,4)`, `(1,0)`, `(3,4)`) are dark blue/purple, reflecting their heavy negative reward.
 *   **Battery Influence:** At Battery = 2, the charging station `(2,1)` lights up as a bright yellow/red beacon of safety, while the rest of the map turns dark, showing that states far from the charger are now highly risky and low in value.
 
 #### What to Focus on:
