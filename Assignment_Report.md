@@ -70,11 +70,11 @@ To guarantee uniqueness, the assignment specifications mandate deriving all envi
 | **Part 2: DP** | **Stochastic Wind Probability** | $20\%$ if Group ID ends in `0-4`; else $30\%$ | `Group ID = 84` (ends in `4`) | **`20%`** probability of random drift |
 | **Part 2: DP** | **Environment Elements** | 2 Targets, 1 Charger, 3 Dangers, 2 Blocked if ends in `0-4` | `Group ID = 84` (ends in `4`) | **`2 Targets, 1 Charger, 3 Dangers, 2 Blocked`** |
 | **Part 2: DP** | **Layout Placement Seed** | Student ID parsed as integer seed | `Student ID = 202505368` | **`202505368`** (deterministic layout seed) |
-| **Part 2: DP** | **Rescue Targets ($R$)** | Placement based on layout seed | Seed `202505368` | **`[(1, 2), (4, 0)]`** |
+| **Part 2: DP** | **Rescue Targets ($R$)** | Placement based on layout seed | Seed `202505368` | **`[(1, 1), (3, 1)]`** |
 | **Part 2: DP** | **Charging Station ($C$)** | Placement based on layout seed | Seed `202505368` | **`(2, 1)`** |
-| **Part 2: DP** | **Danger Zones ($D$)** | Placement based on layout seed | Seed `202505368` | **`[(2, 2), (2, 4), (3, 2)]`** |
-| **Part 2: DP** | **Blocked Cells ($X$)** | Placement based on layout seed | Seed `202505368` | **`[(0, 2), (3, 3)]`** |
-| **Part 2: DP** | **Wind Zones ($W$)** | Placement based on layout seed | Seed `202505368` | **`[(1, 4), (4, 1)]`** |
+| **Part 2: DP** | **Danger Zones ($D$)** | Placement based on layout seed | Seed `202505368` | **`[(0, 4), (1, 0), (3, 4)]`** |
+| **Part 2: DP** | **Blocked Cells ($X$)** | Placement based on layout seed | Seed `202505368` | **`[(1, 4), (4, 3)]`** |
+| **Part 2: DP** | **Wind Zones ($W$)** | Placement based on layout seed | Seed `202505368` | **`[(1, 2), (3, 2), (4, 4)]`** |
 | **Part 2: DP** | **MDP State Space Size** | $\text{rows} \times \text{cols} \times (\text{battery}+1) \times 2^{t_1} \times 2^{t_2}$ | $5 \times 5 \times 11 \times 2 \times 2$ | **`1,100`** reachable states |
 
 This deterministic personalization ensures that the generated notebooks run on a customized environment that cannot be copied from standard internet solutions.
@@ -342,15 +342,15 @@ Formally, an MDP is defined by the tuple (S, A, P, R, gamma):
 ```
      Col->   0        1        2        3        4
 Row| +--------+--------+--------+--------+--------+
- 0 | |  S     |   .    |   X    |   .    |   .    |
+ 0 | |  S     |   .    |   .    |   .    |   D    |
    | +--------+--------+--------+--------+--------+
- 1 | |   .    |   .    |   R1   |   .    |   W    |
+ 1 | |  D     |  R1    |   W    |   .    |   X    |
    | +--------+--------+--------+--------+--------+
- 2 | |   .    |   C    |   D    |   .    |   D    |
+ 2 | |   .    |   C    |   .    |   .    |   .    |
    | +--------+--------+--------+--------+--------+
- 3 | |   .    |   .    |   D    |   X    |   .    |
+ 3 | |   .    |  R2    |   W    |   .    |   D    |
    | +--------+--------+--------+--------+--------+
- 4 | |   R2   |   W    |   .    |   .    |   .    |
+ 4 | |   .    |   .    |   .    |   X    |   W    |
    | +--------+--------+--------+--------+--------+
 ```
 
