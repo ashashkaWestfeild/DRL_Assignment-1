@@ -461,8 +461,8 @@ Once V* converges, the optimal deterministic policy pi* is extracted greedily:
 
 **Rescue Path Behavior:**
 - Navigate toward the nearest accessible rescue target.
-- Target R1 at (1,2) is reachable from start (0,0) in 3 steps via (0,1) -> (1,1) -> (1,2) [avoiding blocked (0,2)].
-- Target R2 at (4,0) is reachable in 4 steps down the left column (avoiding danger zones at (2,2) and (3,2)).
+- Target R1 at (1,1) is reachable from start (0,0) in 2 steps via (1,0) -> (1,1) [avoiding blocked (0,1)].
+- Target R2 at (3,1) is reachable by navigating down through the left column or charger (2,1).
 
 **Charging Strategy:**
 - Visit charging station C at (2,1) when battery drops below a threshold.
@@ -470,11 +470,11 @@ Once V* converges, the optimal deterministic policy pi* is extracted greedily:
 - The exact threshold depends on distance from current position to charging station and remaining rescues.
 
 **Danger Avoidance:**
-- Danger zones at (2,4), (2,2), (3,2) carry -10 penalties — worse than a longer detour cost.
+- Danger zones at (1,4), (3,4), (4,3) carry -10 penalties — worse than a longer detour cost.
 - However, if battery is critically low and a danger zone lies on the direct path to the charger, the agent might accept -10 rather than risk -20 battery exhaustion.
 
 **Wind Zone Handling:**
-- Wind zones W at (4,1) and (1,4) add stochasticity.
+- Wind zones W at (3,2) and (4,4) add stochasticity.
 - The DP solver accounts for this in transition probabilities, encoding 20% drift probability.
 - The optimal policy may avoid wind zones when alternatives exist, since they introduce unpredictability.
 

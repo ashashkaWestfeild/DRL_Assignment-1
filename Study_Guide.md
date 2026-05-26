@@ -128,7 +128,7 @@ A 6-panel heatmap representing the state-values $V^*(s)$ for every coordinate. B
 
 #### How to Read it:
 *   **Target Proximity:** Cells adjacent to the targets are bright red, representing high state-value.
-*   **Danger Zones:** The cells containing or surrounding the three danger zones ($D$ at `(0,4)`, `(1,0)`, `(3,4)`) are dark blue/purple, reflecting their heavy negative reward.
+*   **Danger Zones:** The cells containing or surrounding the three danger zones ($D$ at `(1,4)`, `(3,4)`, `(4,3)`) are dark blue/purple, reflecting their heavy negative reward.
 *   **Battery Influence:** At Battery = 2, the charging station `(2,1)` lights up as a bright yellow/red beacon of safety, while the rest of the map turns dark, showing that states far from the charger are now highly risky and low in value.
 
 #### What to Focus on:
